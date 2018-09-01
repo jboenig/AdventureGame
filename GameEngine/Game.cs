@@ -314,6 +314,18 @@ namespace AdventureGameEngine
                         this.TakeItemFromRoom(tokens[1]);
                     }
                 }
+                else if (tokens[0] == "give")
+                {
+                    isValidCommand = true;
+                    if (tokens.Length >= 4 && tokens[2] == "to")
+                    {
+                        this.GiveItemToCharacter(tokens[1], tokens[3]);
+                    }
+                    else
+                    {
+                        this.ConsoleOut.WriteLine("Tell me what you want to give and to whom!");
+                    }
+                }
                 else if (tokens[0] == "drop")
                 {
                     isValidCommand = true;
@@ -693,6 +705,36 @@ namespace AdventureGameEngine
                     {
                         item.DisplayTakeMessage();
                     }
+                }
+            }
+        }
+
+        private void GiveItemToCharacter(string itemName, string characterName)
+        {
+            if (!string.IsNullOrEmpty(itemName) && !string.IsNullOrEmpty(characterName))
+            {
+                InventoryItem item = this.Player.FindItemByName(itemName);
+                if (item != null)
+                {
+                    var follower = this.Player.GetFollowerByName(characterName);
+                    if (follower == null)
+                    {
+                        this.ConsoleOut.WriteLine(string.Format("{0} is not in your company", characterName));
+                    }
+                    else if (follower.IsDead())
+                    {
+                        this.ConsoleOut.WriteLine(string.Format("{0} is dead and doesn't need a {1} anymore", characterName, itemName));
+                    }
+                    else
+                    {
+                        this.Player.RemoveFromInventory(itemName);
+                        follower.AddToInventory(item);
+                        this.ConsoleOut.WriteLine(string.Format("{0} is now in possession of the {1}", characterName, itemName));
+                    }
+                }
+                else
+                {
+                    this.ConsoleOut.WriteLine(string.Format("You don't have a {0} to give", itemName));
                 }
             }
         }
