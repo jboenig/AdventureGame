@@ -963,6 +963,7 @@ namespace AdventureGameEngine
             this.ConsoleOut.WriteLine("use [item name]                          ==> prepares an inventory item to be used");
             this.ConsoleOut.WriteLine("take [item name]                         ==> takes an item in the room and puts it in your inventory");
             this.ConsoleOut.WriteLine("take [item name] from [character name]   ==> takes an item from a character and puts it in your inventory");
+            this.ConsoleOut.WriteLine("give [item name] to [character name]     ==> takes an item from your inventory and gives it to another character");
             this.ConsoleOut.WriteLine("drop [item name]                         ==> drops an item in your inventory and leaves it in the room");
             this.ConsoleOut.WriteLine("read [rune name]                         ==> reads a rune in your possession");
             this.ConsoleOut.WriteLine("attack [character name]                  ==> attacks a character in the room");
