@@ -1,0 +1,60 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27004.2006
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DungeonConsole", "DungeonConsole\DungeonConsole.csproj", "{F4626CF2-A3C2-4698-A0C0-9E6D6D12C9A9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdventureGameEngine", "GameEngine\AdventureGameEngine.csproj", "{EDC842D2-CADD-420C-A44A-03A67381874B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DungeonLib", "DungeonLib\DungeonLib.csproj", "{663A4056-E9BF-480E-85D6-FF694E434269}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DungeonGui", "DungeonGui\DungeonGui.csproj", "{3A58FE14-0802-418A-B9CE-01913C6341C8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Syncfusion.Diagram", "..\Diagram\Src\Syncfusion.Diagram.csproj", "{7B014FBB-61CA-4CB6-86A4-9C23211EA303}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Documentation|Any CPU = Documentation|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F4626CF2-A3C2-4698-A0C0-9E6D6D12C9A9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F4626CF2-A3C2-4698-A0C0-9E6D6D12C9A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F4626CF2-A3C2-4698-A0C0-9E6D6D12C9A9}.Documentation|Any CPU.ActiveCfg = Debug|Any CPU
+		{F4626CF2-A3C2-4698-A0C0-9E6D6D12C9A9}.Documentation|Any CPU.Build.0 = Debug|Any CPU
+		{F4626CF2-A3C2-4698-A0C0-9E6D6D12C9A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F4626CF2-A3C2-4698-A0C0-9E6D6D12C9A9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EDC842D2-CADD-420C-A44A-03A67381874B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EDC842D2-CADD-420C-A44A-03A67381874B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EDC842D2-CADD-420C-A44A-03A67381874B}.Documentation|Any CPU.ActiveCfg = Debug|Any CPU
+		{EDC842D2-CADD-420C-A44A-03A67381874B}.Documentation|Any CPU.Build.0 = Debug|Any CPU
+		{EDC842D2-CADD-420C-A44A-03A67381874B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EDC842D2-CADD-420C-A44A-03A67381874B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{663A4056-E9BF-480E-85D6-FF694E434269}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{663A4056-E9BF-480E-85D6-FF694E434269}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{663A4056-E9BF-480E-85D6-FF694E434269}.Documentation|Any CPU.ActiveCfg = Debug|Any CPU
+		{663A4056-E9BF-480E-85D6-FF694E434269}.Documentation|Any CPU.Build.0 = Debug|Any CPU
+		{663A4056-E9BF-480E-85D6-FF694E434269}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{663A4056-E9BF-480E-85D6-FF694E434269}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3A58FE14-0802-418A-B9CE-01913C6341C8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3A58FE14-0802-418A-B9CE-01913C6341C8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3A58FE14-0802-418A-B9CE-01913C6341C8}.Documentation|Any CPU.ActiveCfg = Debug|Any CPU
+		{3A58FE14-0802-418A-B9CE-01913C6341C8}.Documentation|Any CPU.Build.0 = Debug|Any CPU
+		{3A58FE14-0802-418A-B9CE-01913C6341C8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3A58FE14-0802-418A-B9CE-01913C6341C8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7B014FBB-61CA-4CB6-86A4-9C23211EA303}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7B014FBB-61CA-4CB6-86A4-9C23211EA303}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7B014FBB-61CA-4CB6-86A4-9C23211EA303}.Documentation|Any CPU.ActiveCfg = Documentation|Any CPU
+		{7B014FBB-61CA-4CB6-86A4-9C23211EA303}.Documentation|Any CPU.Build.0 = Documentation|Any CPU
+		{7B014FBB-61CA-4CB6-86A4-9C23211EA303}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7B014FBB-61CA-4CB6-86A4-9C23211EA303}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {782BEC47-0BD8-4BFE-A33B-DC84EEED0450}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,18 @@
+﻿<UserControl x:Class="AdventureGameGui.HealthControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:AdventureGameGui"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <TextBlock Text="Health" Grid.Row="0" FontSize="20" HorizontalAlignment="Center"></TextBlock>
+        <ProgressBar Height="30" Minimum="0" Maximum="100" Value="{Binding Health, Mode=OneWay}" Grid.Row="1"></ProgressBar>
+        <TextBlock Text="{Binding Health}" TextAlignment="Center" Grid.Row="1" VerticalAlignment="Center"></TextBlock>
+    </Grid>
+</UserControl>
