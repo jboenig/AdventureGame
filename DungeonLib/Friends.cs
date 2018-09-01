@@ -35,6 +35,15 @@ namespace Dungeon
                     leader.Follow(this);
                 }
             }
+            else if (dialogText.Contains("attack"))
+            {
+                conversation.Say(this.Name, "Wimper, wimper, wimper...right behind you boss - way behind you");
+                var leader = source as ILeader;
+                if (leader != null)
+                {
+                    leader.Follow(this);
+                }
+            }
             else
             {
                 var responseNum = DateTime.Now.Second % 5;
@@ -131,6 +140,15 @@ namespace Dungeon
             else if (dialogText.Contains("follow"))
             {
                 conversation.Say(this.Name, "I will stay by your side through thick and thin!");
+                var leader = source as ILeader;
+                if (leader != null)
+                {
+                    leader.Follow(this);
+                }
+            }
+            else if (dialogText.Contains("attack"))
+            {
+                conversation.Say(this.Name, "Charge!");
             }
             else
             {
