@@ -24,9 +24,22 @@ namespace AdventureGameEngine
             this.consoleOut.Write("Wall");
         }
 
-        public override bool TryEnter(Character character)
+        public override bool CanEnter(Character character)
         {
             return false;
+        }
+
+        public override void Enter(Character character)
+        {
+        }
+
+        public override bool CanExit(Character character)
+        {
+            return false;
+        }
+
+        public override void Exit(Character character)
+        {
         }
 
         public override bool IsAccessible(Character character)

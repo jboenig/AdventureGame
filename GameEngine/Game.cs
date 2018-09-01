@@ -152,7 +152,7 @@ namespace AdventureGameEngine
             {
                 throw new InvalidOperationException("GameMap start position not defined");
             }
-            mapEntry.TryEnter(this.player);
+            mapEntry.Enter(this.player);
             this.commandHistory = new List<string>();
             this.currentConversation = Conversation.Start(this.player);
         }
@@ -439,7 +439,7 @@ namespace AdventureGameEngine
                 {
                     throw new InvalidOperationException("GameMap start position not defined");
                 }
-                mapEntry.TryEnter(this.player);
+                mapEntry.Enter(this.player);
                 this.DisplayCurrentRoomDescription();
             }
             else
@@ -525,9 +525,12 @@ namespace AdventureGameEngine
             else
             {
                 // Update player position if not a wall
-                var mapEntry = this.gameBoard.GetEntry(this.player.Position.Forward());
-                if (mapEntry.TryEnter(this.player))
+                var curMapEntry = this.gameBoard.GetEntry(this.player.Position);
+                var newMapEntry = this.gameBoard.GetEntry(this.player.Position.Forward());
+                if (curMapEntry.CanExit(this.player) && newMapEntry.CanEnter(this.player))
                 {
+                    curMapEntry.Exit(this.player);
+                    newMapEntry.Enter(this.player);
                     this.player.Position = this.player.Position.Forward();
                     this.OnPlayerPositionChanged();
                 }
@@ -544,9 +547,12 @@ namespace AdventureGameEngine
             if (!this.player.Position.IsUndefined)
             {
                 // Update player position if not a wall
-                var mapEntry = this.gameBoard.GetEntry(this.player.Position.Back());
-                if (mapEntry.TryEnter(this.player))
+                var curMapEntry = this.gameBoard.GetEntry(this.player.Position);
+                var newMapEntry = this.gameBoard.GetEntry(this.player.Position.Back());
+                if (curMapEntry.CanExit(this.player) && newMapEntry.CanEnter(this.player))
                 {
+                    curMapEntry.Exit(this.player);
+                    newMapEntry.Enter(this.player);
                     this.player.Position = this.player.Position.Back();
                     this.OnPlayerPositionChanged();
                 }
@@ -562,9 +568,12 @@ namespace AdventureGameEngine
             if (!this.player.Position.IsUndefined)
             {
                 // Update player position if not a wall
-                var mapEntry = this.gameBoard.GetEntry(this.player.Position.Left());
-                if (mapEntry.TryEnter(this.player))
+                var curMapEntry = this.gameBoard.GetEntry(this.player.Position);
+                var newMapEntry = this.gameBoard.GetEntry(this.player.Position.Left());
+                if (curMapEntry.CanExit(this.player) && newMapEntry.CanEnter(this.player))
                 {
+                    curMapEntry.Exit(this.player);
+                    newMapEntry.Enter(this.player);
                     this.player.Position = this.player.Position.Left();
                     this.OnPlayerPositionChanged();
                 }
@@ -580,9 +589,12 @@ namespace AdventureGameEngine
             if (!this.player.Position.IsUndefined)
             {
                 // Update player position if not a wall
-                var mapEntry = this.gameBoard.GetEntry(this.player.Position.Right());
-                if (mapEntry.TryEnter(this.player))
+                var curMapEntry = this.gameBoard.GetEntry(this.player.Position);
+                var newMapEntry = this.gameBoard.GetEntry(this.player.Position.Right());
+                if (curMapEntry.CanExit(this.player) && newMapEntry.CanEnter(this.player))
                 {
+                    curMapEntry.Exit(this.player);
+                    newMapEntry.Enter(this.player);
                     this.player.Position = this.player.Position.Right();
                     this.OnPlayerPositionChanged();
                 }
@@ -599,6 +611,12 @@ namespace AdventureGameEngine
             this.currentConversation = Conversation.Start(this.player);
             this.SoundPlayer.PlaySoundEffect("Walking");
             this.player.DecreaseHealth(MoveHealthCost);
+
+            foreach (var follower in this.player.Followers)
+            {
+                follower.Position = this.player.Position;
+            }
+
             this.DisplayCurrentRoomDescription();
             this.FirePropertyChanged("PlayerPosition");
         }

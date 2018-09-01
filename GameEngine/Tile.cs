@@ -9,7 +9,10 @@ namespace AdventureGameEngine
     {
         public abstract void Display();
         public abstract void DisplayDescription();
-        public abstract bool TryEnter(Character character);
+        public abstract bool CanExit(Character character);
+        public abstract void Exit(Character character);
+        public abstract bool CanEnter(Character character);
+        public abstract void Enter(Character character);
         public abstract bool IsAccessible(Character character);
         public abstract bool HasVisited(Character character);
     }

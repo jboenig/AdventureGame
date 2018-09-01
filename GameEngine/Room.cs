@@ -27,22 +27,82 @@ namespace AdventureGameEngine
             set;
         }
 
-        public override bool TryEnter(Character character)
+        public override bool CanEnter(Character character)
+        {
+            bool canEnter = true;
+
+            var leader = character as ILeader;
+            if (leader != null)
+            {
+                foreach (var follower in leader.Followers)
+                {
+                    if (!this.CanEnter(follower))
+                    {
+                        canEnter = false;
+                    }
+                }
+            }
+
+            return canEnter;
+        }
+
+
+        public override void Enter(Character character)
         {
             if (!this.Visitors.Contains(character))
             {
                 this.Visitors.Add(character);
+            }
 
-                var leader = character as ILeader;
-                if (leader != null)
+            if (!this.Characters.Contains(character))
+            {
+                this.Characters.Add(character);
+            }
+
+            var leader = character as ILeader;
+            if (leader != null)
+            {
+                foreach (var follower in leader.Followers)
                 {
-                    foreach (var follower in leader.Followers)
+                    this.Enter(follower);
+                }
+            }
+        }
+
+        public override bool CanExit(Character character)
+        {
+            bool canExit = true;
+
+            var leader = character as ILeader;
+            if (leader != null)
+            {
+                foreach (var follower in leader.Followers)
+                {
+                    if (!this.CanExit(follower))
                     {
-                        this.TryEnter(follower);
+                        canExit = false;
                     }
                 }
             }
-            return true;
+
+            return canExit;
+        }
+
+        public override void Exit(Character character)
+        {
+            if (this.Characters.Contains(character))
+            {
+                this.Characters.Remove(character);
+            }
+
+            var leader = character as ILeader;
+            if (leader != null)
+            {
+                foreach (var follower in leader.Followers)
+                {
+                    this.Exit(follower);
+                }
+            }
         }
 
         public override bool IsAccessible(Character character)
@@ -80,6 +140,42 @@ namespace AdventureGameEngine
             return from f in this.Features
                    where f.GetType().IsAssignableFrom(typeof(TFeature))
                    select (TFeature)f;
+        }
+
+        public Player GetPlayer()
+        {
+            return (from c in this.Characters
+                    where (c.GetType() == typeof(Player))
+                    select c).Cast<Player>().FirstOrDefault();
+        }
+
+        public IEnumerable<Character> GetPlayerFollowers()
+        {
+            var player = this.GetPlayer();
+            if (player != null)
+            {
+                return player.Followers;
+            }
+            return null;
+        }
+
+        public IEnumerable<Character> GetPlayerAndFollowers()
+        {
+            List<Character> playerAndFollowers = new List<Character>();
+
+            var player = this.GetPlayer();
+            if (player != null)
+            {
+                playerAndFollowers.Add(player);
+            }
+
+            var playerFollowers = this.GetPlayerFollowers();
+            if (playerFollowers != null && playerFollowers.Count() > 0)
+            {
+                playerAndFollowers.AddRange(playerFollowers);
+            }
+
+            return playerAndFollowers;
         }
 
         public Character GetCharacterByName(string characterName)
@@ -221,13 +317,14 @@ namespace AdventureGameEngine
 
             if (this.Characters.Count > 0)
             {
-                isRoomEmpty = false;
-
-                var liveCharacters = this.GetLiveCharacters();
-                var deadCharacters = this.GetDeadCharacters();
+                var playerAndFollowers = this.GetPlayerAndFollowers();
+                var liveCharacters = RemoveCharacters(this.GetLiveCharacters(), playerAndFollowers);
+                var deadCharacters = RemoveCharacters(this.GetDeadCharacters(), playerAndFollowers);
 
                 if (liveCharacters.Count() > 0)
                 {
+                    isRoomEmpty = false;
+
                     this.consoleOut.WriteLine("");
                     this.consoleOut.WriteLine("This room contains the following characters:");
 
@@ -239,6 +336,8 @@ namespace AdventureGameEngine
 
                 if (deadCharacters.Count() > 0)
                 {
+                    isRoomEmpty = false;
+
                     this.consoleOut.WriteLine("");
                     this.consoleOut.WriteLine("This room contains the following corpses:");
 
@@ -253,6 +352,21 @@ namespace AdventureGameEngine
             {
                 this.consoleOut.WriteLine("Emptiness everywhere you look! Depressing, isn't it?");
             }
+        }
+
+        private static IEnumerable<Character> RemoveCharacters(IEnumerable<Character> source, IEnumerable<Character> removeList)
+        {
+            List<Character> result = new List<Character>();
+
+            foreach (var curSource in source)
+            {
+                if (!removeList.Contains(curSource))
+                {
+                    result.Add(curSource);
+                }
+            }
+
+            return result;
         }
     }
 }
