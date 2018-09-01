@@ -136,7 +136,35 @@ namespace Dungeon
             }
         }
     }
-    
+
+    class Lightsaber : Weapon
+    {
+        public Lightsaber(IConsoleOutputService consoleOut, ISoundPlayerService soundPlayer,
+            string name = "Lightsaber", int maxDamage = 20) :
+            base(consoleOut, soundPlayer)
+        {
+            this.Name = name;
+            this.MaxDamage = MaxDamage;
+
+        }
+
+        public override string Description
+        {
+            get
+            {
+                return string.Format("{5} - {6} hit points", this.Name, this.MaxDamage);
+            }
+        }
+
+        public override int WeightInLbs
+        {
+            get
+            {
+                return 1;
+            }
+        }
+    }
+
     class Bow : Weapon
     {
         public Bow(IConsoleOutputService consoleOut, ISoundPlayerService soundPlayer,
