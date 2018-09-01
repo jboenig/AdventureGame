@@ -146,6 +146,23 @@ namespace Dungeon
                     leader.Follow(this);
                 }
             }
+            else if (dialogText.ToLower().StartsWith("use"))
+            {
+                var tokens = dialogText.ToLower().Split(new char[] { ' ' });
+                if (tokens.Length > 1 && tokens[0] == "use")
+                {
+                    var itemName = tokens[1];
+                    var item = this.UseItem<InventoryItem>(itemName);
+                    if (item == null)
+                    {
+                        conversation.Say(this.Name, string.Format("Sorry boss, I don't have a {0}!", itemName));
+                    }
+                    else
+                    {
+                        conversation.Say(this.Name, string.Format("Aye, my {0} is at the ready!", itemName));
+                    }
+                }
+            }
             else if (dialogText.Contains("attack"))
             {
                 conversation.Say(this.Name, "Charge!");

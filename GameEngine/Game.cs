@@ -745,6 +745,19 @@ namespace AdventureGameEngine
                 }
                 else
                 {
+                    foreach (var follower in this.player.Followers)
+                    {
+                        var resFollower = follower.Attack(enemy);
+                        if (!resFollower.IsSuccess)
+                        {
+                            this.ConsoleOut.WriteLine(resFollower.Message);
+                        }
+                        else
+                        {
+                            this.ConsoleOut.WriteLine(string.Format("{0} attacked {1}", follower.Name, enemy.Name));
+                        }
+                    }
+
                     this.SoundPlayer.PlaySoundEffect("SwordsClashing");
 
                     if (enemy.IsDead())
