@@ -8,7 +8,7 @@ using AdventureGameEngine;
 
 namespace Dungeon
 {
-    class Dog : Friend, IConversationParticipant
+    public sealed class Dog : Friend, IConversationParticipant
     {
         public Dog(IConsoleOutputService consoleOut, ISoundPlayerService soundPlayer, string name, string desc) :
             base(consoleOut, soundPlayer, name, desc)
@@ -67,7 +67,7 @@ namespace Dungeon
         }
     }
 
-    class Dwarf : Friend, IItemProvider, IConversationParticipant
+    public sealed class Dwarf : Friend, IItemProvider, IConversationParticipant
     {
         public Dwarf(IConsoleOutputService consoleOut, ISoundPlayerService soundPlayer, string name, string desc) :
             base(consoleOut, soundPlayer, name, desc)

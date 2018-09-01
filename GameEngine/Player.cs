@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Collections.Generic;
 
 namespace AdventureGameEngine
@@ -95,6 +96,18 @@ namespace AdventureGameEngine
         public IEnumerable<Character> Followers
         {
             get { return this.followers; }
+        }
+
+        public Character GetFollowerByName(string characterName)
+        {
+            if (string.IsNullOrEmpty(characterName))
+            {
+                return null;
+            }
+
+            return (from f in this.Followers
+                    where f.Name.ToLower().Trim() == characterName.ToLower().Trim()
+                    select f).FirstOrDefault();
         }
     }
 }

@@ -304,9 +304,14 @@ namespace AdventureGameEngine
                     {
                         this.ConsoleOut.WriteLine("Tell me what you want to take!");
                     }
+                    else if (tokens.Length >= 4 && tokens[2] == "from")
+                    {
+                        // Fourth token is the name of a character
+                        this.TakeItemFromCharacter(tokens[1], tokens[3]);
+                    }
                     else
                     {
-                        this.TakeItem(tokens[1]);
+                        this.TakeItemFromRoom(tokens[1]);
                     }
                 }
                 else if (tokens[0] == "drop")
@@ -598,7 +603,7 @@ namespace AdventureGameEngine
             this.FirePropertyChanged("PlayerPosition");
         }
 
-        private void TakeItem(string itemName)
+        private void TakeItemFromRoom(string itemName)
         {
             if (!string.IsNullOrEmpty(itemName))
             {
@@ -619,6 +624,57 @@ namespace AdventureGameEngine
                 else
                 {
                     this.ConsoleOut.WriteLine(string.Format("This room does not contain a {0}", itemName));
+                }
+            }
+        }
+
+        private void TakeItemFromCharacter(string itemName, string characterName)
+        {
+            if (!string.IsNullOrEmpty(itemName) && !string.IsNullOrEmpty(characterName))
+            {
+                InventoryItem item = null;
+
+                var character = this.CurrentRoom.GetCharacterByName(characterName);
+                if (character == null)
+                {
+                    this.ConsoleOut.WriteLine(string.Format("{0} is not a character in this room", characterName));
+                }
+                else
+                {
+                    if (character is Enemy && !character.IsDead())
+                    {
+                        this.ConsoleOut.WriteLine(string.Format("You will have to kill {0} to take the {1}", characterName, itemName));
+                    }
+                    else
+                    {
+                        var follower = this.player.GetFollowerByName(characterName);
+                        if (follower != null)
+                        {
+                            var followerItemProvider = follower as IItemProvider;
+                            if (followerItemProvider != null)
+                            {
+                                item = followerItemProvider.TakeItemByName(itemName);
+                            }
+                        }
+
+                        if (item == null)
+                        {
+                            this.ConsoleOut.WriteLine(string.Format("{0} cannot give you the {1}", characterName, itemName));
+                        }
+                    }
+                }
+
+                if (item != null)
+                {
+                    var res = this.player.ReceiveItem(item);
+                    if (!res.IsSuccess)
+                    {
+                        this.ConsoleOut.WriteLine(res.Message);
+                    }
+                    else
+                    {
+                        item.DisplayTakeMessage();
+                    }
                 }
             }
         }
@@ -738,6 +794,8 @@ namespace AdventureGameEngine
             }
             else
             {
+                int enemyStartHealth = enemy.Health;
+
                 var result = this.player.Attack(enemy);
                 if (!result.IsSuccess)
                 {
@@ -745,8 +803,15 @@ namespace AdventureGameEngine
                 }
                 else
                 {
+                    this.SoundPlayer.PlaySoundEffect("SwordsClashing");
+
+                    int damage = enemyStartHealth - enemy.Health;
+                    this.ConsoleOut.WriteLine(string.Format("You inflicted {0} points of damage on {1}", damage, enemy.Name));
+
                     foreach (var follower in this.player.Followers)
                     {
+                        enemyStartHealth = enemy.Health;
+
                         var resFollower = follower.Attack(enemy);
                         if (!resFollower.IsSuccess)
                         {
@@ -754,11 +819,10 @@ namespace AdventureGameEngine
                         }
                         else
                         {
-                            this.ConsoleOut.WriteLine(string.Format("{0} attacked {1}", follower.Name, enemy.Name));
+                            damage = enemyStartHealth - enemy.Health;
+                            this.ConsoleOut.WriteLine(string.Format("{0} inflicted {1} points of damage on {2}", follower.Name, damage, enemy.Name));
                         }
                     }
-
-                    this.SoundPlayer.PlaySoundEffect("SwordsClashing");
 
                     if (enemy.IsDead())
                     {
@@ -827,25 +891,26 @@ namespace AdventureGameEngine
         public void DisplayHelp()
         {
             this.ConsoleOut.WriteLine("");
-            this.ConsoleOut.WriteLine("show map                 ==> shows the map");
-            this.ConsoleOut.WriteLine("show health              ==> shows your character's health");
-            this.ConsoleOut.WriteLine("look                     ==> describes your surroundings");
-            this.ConsoleOut.WriteLine("move north               ==> move north");
-            this.ConsoleOut.WriteLine("move south               ==> move south");
-            this.ConsoleOut.WriteLine("move east                ==> move east");
-            this.ConsoleOut.WriteLine("move west                ==> move west");
-            this.ConsoleOut.WriteLine("inv                      ==> shows the items in your inventory");
-            this.ConsoleOut.WriteLine("drink                    ==> drink some water to restore health");
-            this.ConsoleOut.WriteLine("use [item name]          ==> prepares an inventory item to be used");
-            this.ConsoleOut.WriteLine("take [item name]         ==> takes an item in the room and puts it in your inventory");
-            this.ConsoleOut.WriteLine("drop [item name]         ==> drops an item in your inventory and leaves it in the room");
-            this.ConsoleOut.WriteLine("read [rune name]         ==> reads a rune in your possession");
-            this.ConsoleOut.WriteLine("attack [character name]  ==> attacks a character in the room");
-            this.ConsoleOut.WriteLine("followers                ==> shows a list of your followers");
-            this.ConsoleOut.WriteLine("talk to [character name] ==> starts a conversation with a character in the room");
-            this.ConsoleOut.WriteLine("say [text]               ==> say something in a conversation (start conversation with talk to)");
-            this.ConsoleOut.WriteLine("history                  ==> show command history");
-            this.ConsoleOut.WriteLine("exit                     ==> exits the game");
+            this.ConsoleOut.WriteLine("show map                                 ==> shows the map");
+            this.ConsoleOut.WriteLine("show health                              ==> shows your character's health");
+            this.ConsoleOut.WriteLine("look                                     ==> describes your surroundings");
+            this.ConsoleOut.WriteLine("move north                               ==> move north");
+            this.ConsoleOut.WriteLine("move south                               ==> move south");
+            this.ConsoleOut.WriteLine("move east                                ==> move east");
+            this.ConsoleOut.WriteLine("move west                                ==> move west");
+            this.ConsoleOut.WriteLine("inv                                      ==> shows the items in your inventory");
+            this.ConsoleOut.WriteLine("drink                                    ==> drink some water to restore health");
+            this.ConsoleOut.WriteLine("use [item name]                          ==> prepares an inventory item to be used");
+            this.ConsoleOut.WriteLine("take [item name]                         ==> takes an item in the room and puts it in your inventory");
+            this.ConsoleOut.WriteLine("take [item name] from [character name]   ==> takes an item from a character and puts it in your inventory");
+            this.ConsoleOut.WriteLine("drop [item name]                         ==> drops an item in your inventory and leaves it in the room");
+            this.ConsoleOut.WriteLine("read [rune name]                         ==> reads a rune in your possession");
+            this.ConsoleOut.WriteLine("attack [character name]                  ==> attacks a character in the room");
+            this.ConsoleOut.WriteLine("followers                                ==> shows a list of your followers");
+            this.ConsoleOut.WriteLine("talk to [character name]                 ==> starts a conversation with a character in the room");
+            this.ConsoleOut.WriteLine("say [text]                               ==> say something in a conversation (start conversation with talk to)");
+            this.ConsoleOut.WriteLine("history                                  ==> show command history");
+            this.ConsoleOut.WriteLine("exit                                     ==> exits the game");
             this.ConsoleOut.WriteLine("");
         }
 

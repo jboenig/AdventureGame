@@ -139,7 +139,8 @@ namespace Dungeon
 
             // Add Bombur to the maze
             var dwarf1 = new Dwarf(this.consoleOut, this.soundPlayer, "Bombur", "Bombur son of Dwalin");
-            dwarf1.AddToInventory(new BattleAxe(this.consoleOut, this.soundPlayer));
+            dwarf1.AddToInventory(new Staff(this.consoleOut, this.soundPlayer));
+            dwarf1.UseItem<Staff>();
             if (runes.Count > 0)
             {
                 dwarf1.AddToInventory(runes.UseNext());

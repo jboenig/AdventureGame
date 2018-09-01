@@ -7,5 +7,6 @@ namespace AdventureGameEngine
     {
         void Follow(Character character);
         IEnumerable<Character> Followers { get; }
+        Character GetFollowerByName(string characterName);
     }
 }
