@@ -165,6 +165,34 @@ namespace Dungeon
         }
     }
 
+    class Sting : Weapon
+    {
+        public Sting(IConsoleOutputService consoleOut, ISoundPlayerService soundPlayer,
+            string name = "Sting", int maxDamage = 30) :
+            base(consoleOut, soundPlayer)
+        {
+            this.Name = name;
+            this.MaxDamage = MaxDamage;
+
+        }
+
+        public override string Description
+        {
+            get
+            {
+                return string.Format("{20} - {30} hit points", this.Name, this.MaxDamage);
+            }
+        }
+
+        public override int WeightInLbs
+        {
+            get
+            {
+                return 1;
+            }
+        }
+    }
+
     class Bow : Weapon
     {
         public Bow(IConsoleOutputService consoleOut, ISoundPlayerService soundPlayer,

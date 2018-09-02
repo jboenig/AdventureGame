@@ -25,6 +25,7 @@ namespace Dungeon
         private List<Weapon> weapons = new List<Weapon>();
         private List<Friend> friends = new List<Friend>();
         private List<Enemy> enemies = new List<Enemy>();
+        private List<PowerUp> powerups = new List<PowerUp>();
         private List<InventoryItem> items = new List<InventoryItem>();
         private Random randomRoomGenerator = new Random(DateTime.Now.Minute);
 
@@ -89,6 +90,7 @@ namespace Dungeon
             this.InitWeapons();
             this.InitFriends(runes);
             this.InitEnemies(runes);
+            this.InitPowerups();
         }
 
         public void InitStartRoom(Room room)
@@ -104,11 +106,23 @@ namespace Dungeon
             var curRoom = this.PickRandomRoom();
             curRoom.Items.Add(katana);
 
+            // Add a Lightsaber
+            var lightsaber = new Lightsaber(this.consoleOut, this.soundPlayer);
+            this.Weapons.Add(lightsaber);
+            curRoom = this.PickRandomRoom();
+            curRoom.Items.Add(lightsaber);
+
             // Add a Broad Sword
             var broadSword = new BroadSword(this.consoleOut, this.soundPlayer);
             this.Weapons.Add(broadSword);
             curRoom = this.PickRandomRoom();
             curRoom.Items.Add(broadSword);
+
+            // Add a sting
+            var sting = new Sting(this.consoleOut, this.soundPlayer);
+            this.Weapons.Add(sting);
+            curRoom = this.PickRandomRoom();
+            curRoom.Items.Add(sting);
 
             // Add a Battle Axe
             var battleAxe = new BattleAxe(this.consoleOut, this.soundPlayer);
@@ -280,6 +294,34 @@ namespace Dungeon
             this.RoomFeatures.Add(escapePortal);
             curRoom = this.PickRandomRoom();
             curRoom.Features.Add(escapePortal);
+        }
+
+        public void InitPowerups()
+        {
+            var powerup1 = new PowerUp(this.consoleOut, this.soundPlayer);
+            this.powerups.Add(powerup1);
+            var curRoom = this.PickRandomRoom();
+            curRoom.Items.Add(powerup1);
+
+            var powerup2 = new PowerUp(this.consoleOut, this.soundPlayer);
+            this.powerups.Add(powerup2);
+            curRoom = this.PickRandomRoom();
+            curRoom.Items.Add(powerup2);
+
+            var powerup3 = new PowerUp(this.consoleOut, this.soundPlayer);
+            this.powerups.Add(powerup3);
+            curRoom = this.PickRandomRoom();
+            curRoom.Items.Add(powerup3);
+
+            var powerup4 = new PowerUp(this.consoleOut, this.soundPlayer);
+            this.powerups.Add(powerup4);
+            curRoom = this.PickRandomRoom();
+            curRoom.Items.Add(powerup4);
+
+            var powerup5 = new PowerUp(this.consoleOut, this.soundPlayer);
+            this.powerups.Add(powerup5);
+            curRoom = this.PickRandomRoom();
+            curRoom.Items.Add(powerup5);
         }
 
         #endregion

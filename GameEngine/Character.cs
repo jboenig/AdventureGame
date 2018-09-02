@@ -95,6 +95,15 @@ namespace AdventureGameEngine
             {
                 return new BoolMessageResult(false, "Item is null");
             }
+
+            // Special treatment for powerups
+            var powerup = item as PowerUp;
+            if (powerup != null)
+            {
+                this.IncreaseHealth(powerup.HealthPoints);
+                return BoolMessageResult.Success;
+            }
+
             this.inventory.Add(item);
             item.Container = this;
             return BoolMessageResult.Success;
