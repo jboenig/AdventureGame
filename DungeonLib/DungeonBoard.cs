@@ -89,9 +89,9 @@ namespace Dungeon
             this.InitStartRoom(this.rooms.First());
             this.InitRoomFeatures(runes);
             this.InitWeapons();
+            this.InitNeutralCharacters(runes);
             this.InitFriends(runes);
             this.InitEnemies(runes);
-            this.InitNeutralCharacters(runes);
             this.InitPowerups();
         }
 
@@ -222,7 +222,8 @@ namespace Dungeon
 
         public void InitNeutralCharacters(RuneCollection runes)
         {
-            var wizard1 = new Wizard(this.consoleOut, this.soundPlayer, "Dumbledore", "A wizard");
+            var wizard1 = new Wizard(this.consoleOut, this.soundPlayer, "Merlin", "A powerful and all knowing wizard");
+            wizard1.ReadRunes(runes);
             this.NeutralCharacters.Add(wizard1);
             var curRoom = this.PickRandomRoom();
             curRoom.Characters.Add(wizard1);

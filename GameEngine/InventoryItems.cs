@@ -289,6 +289,14 @@ namespace AdventureGameEngine
             }
         }
 
+        public string Text
+        {
+            get
+            {
+                return this.text;
+            }
+        }
+
         public void Read()
         {
             this.consoleOut.WriteLine(this.text);
