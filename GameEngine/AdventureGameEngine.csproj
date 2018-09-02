@@ -61,6 +61,7 @@
     <Compile Include="InventoryItems.cs" />
     <Compile Include="ISoundPlayerService.cs" />
     <Compile Include="IUserPromptService.cs" />
+    <Compile Include="NeutralCharacter.cs" />
     <Compile Include="PasswordGenerator.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="Portal.cs" />

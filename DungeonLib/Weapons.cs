@@ -144,15 +144,14 @@ namespace Dungeon
             base(consoleOut, soundPlayer)
         {
             this.Name = name;
-            this.MaxDamage = MaxDamage;
-
+            this.MaxDamage = maxDamage;
         }
 
         public override string Description
         {
             get
             {
-                return string.Format("{5} - {6} hit points", this.Name, this.MaxDamage);
+                return string.Format("{0} - {1} hit points", this.Name, this.MaxDamage);
             }
         }
 
@@ -172,15 +171,14 @@ namespace Dungeon
             base(consoleOut, soundPlayer)
         {
             this.Name = name;
-            this.MaxDamage = MaxDamage;
-
+            this.MaxDamage = maxDamage;
         }
 
         public override string Description
         {
             get
             {
-                return string.Format("{20} - {30} hit points", this.Name, this.MaxDamage);
+                return string.Format("{0} - {1} hit points", this.Name, this.MaxDamage);
             }
         }
 

@@ -25,6 +25,7 @@ namespace Dungeon
         private List<Weapon> weapons = new List<Weapon>();
         private List<Friend> friends = new List<Friend>();
         private List<Enemy> enemies = new List<Enemy>();
+        private List<NeutralCharacter> neutralCharacters = new List<NeutralCharacter>();
         private List<PowerUp> powerups = new List<PowerUp>();
         private List<InventoryItem> items = new List<InventoryItem>();
         private Random randomRoomGenerator = new Random(DateTime.Now.Minute);
@@ -90,6 +91,7 @@ namespace Dungeon
             this.InitWeapons();
             this.InitFriends(runes);
             this.InitEnemies(runes);
+            this.InitNeutralCharacters(runes);
             this.InitPowerups();
         }
 
@@ -216,6 +218,14 @@ namespace Dungeon
             this.Enemies.Add(troll3);
             curRoom = this.PickRandomRoom();
             curRoom.Characters.Add(troll3);
+        }
+
+        public void InitNeutralCharacters(RuneCollection runes)
+        {
+            var wizard1 = new Wizard(this.consoleOut, this.soundPlayer, "Dumbledore", "A wizard");
+            this.NeutralCharacters.Add(wizard1);
+            var curRoom = this.PickRandomRoom();
+            curRoom.Characters.Add(wizard1);
         }
 
         public void InitRoomFeatures(RuneCollection runes)
@@ -362,6 +372,11 @@ namespace Dungeon
         protected List<Enemy> Enemies
         {
             get { return this.enemies; }
+        }
+
+        protected List<NeutralCharacter> NeutralCharacters
+        {
+            get { return this.neutralCharacters; }
         }
 
         protected List<Weapon> Weapons
