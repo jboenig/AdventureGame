@@ -26,6 +26,7 @@
                                 <local:MapControl x:Name="mapControl"></local:MapControl>
                             </TabItem>
                             <TabItem Header="Action">
+                                <local:RoomControl x:Name="roomControl"></local:RoomControl>
                             </TabItem>
                         </TabControl>
                     </Grid>

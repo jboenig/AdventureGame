@@ -68,6 +68,11 @@ namespace AdventureGameGui
             else
             {
                 this.mapControl.UpdateMap();
+
+                // Load Room control with current room
+                var playerCurrentPos = this.game.Player.Position;
+                var currentRoom = this.game.GameBoard.GetEntry(playerCurrentPos) as Room;
+                this.roomControl.LoadRoom(currentRoom);
             }
         }
 
@@ -88,6 +93,11 @@ namespace AdventureGameGui
             // Display game intro
             this.game.DisplayGameIntro();
             this.game.DisplayCurrentRoomDescription();
+
+            // Load Room control with current room
+            var playerCurrentPos = this.game.Player.Position;
+            var currentRoom = this.game.GameBoard.GetEntry(playerCurrentPos) as Room;
+            this.roomControl.LoadRoom(currentRoom);
         }
 
         public void Reset()
@@ -105,6 +115,11 @@ namespace AdventureGameGui
 
             this.consoleIO.Clear();
             this.mapControl.UpdateMap();
+
+            // Load Room control with current room
+            var playerCurrentPos = this.game.Player.Position;
+            var currentRoom = this.game.GameBoard.GetEntry(playerCurrentPos) as Room;
+            this.roomControl.LoadRoom(currentRoom);
         }
 
         public void Exit()
