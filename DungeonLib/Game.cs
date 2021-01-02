@@ -1,5 +1,4 @@
 ﻿using System;
-using Ninject;
 using AdventureGameEngine;
 
 namespace Dungeon

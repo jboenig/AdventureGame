@@ -3,7 +3,7 @@ using AdventureGameEngine;
 
 namespace Dungeon
 {
-    public class BareHands : Weapon
+    public sealed class BareHands : Weapon
     {
         public BareHands(IConsoleOutputService consoleOut, ISoundPlayerService soundPlayer, int maxDamage) :
             base(consoleOut, soundPlayer)
@@ -29,7 +29,7 @@ namespace Dungeon
         }
     }
 
-    public class Dagger : Weapon
+    public sealed class Dagger : Weapon
     {
         public Dagger(IConsoleOutputService consoleOut, ISoundPlayerService soundPlayer,
             string name = "Dagger", int maxDamage = 10) :
@@ -56,7 +56,7 @@ namespace Dungeon
         }
     }
 
-    public class BattleAxe : Weapon
+    public sealed class BattleAxe : Weapon
     {
         public BattleAxe(IConsoleOutputService consoleOut, ISoundPlayerService soundPlayer, 
             string name = "BattleAxe", int maxDamage = 15) :
@@ -83,34 +83,7 @@ namespace Dungeon
         }
     }
 
-    public class Katana : Weapon
-    {
-        public Katana(IConsoleOutputService consoleOut, ISoundPlayerService soundPlayer,
-            string name = "Katana", int maxDamage = 10) :
-            base(consoleOut, soundPlayer)
-        {
-            this.Name = name;
-            this.MaxDamage = maxDamage;
-        }
-
-        public override string Description
-        {
-            get
-            {
-                return string.Format("{0} - {1} hit points", this.Name, this.MaxDamage);
-            }
-        }
-
-        public override int WeightInLbs
-        {
-            get
-            {
-                return 12;
-            }
-        }
-    }
-
-    class BroadSword : Weapon
+    public sealed class BroadSword : Weapon
     {
         public BroadSword(IConsoleOutputService consoleOut, ISoundPlayerService soundPlayer,
             string name = "BroadSword", int maxDamage = 14) :
@@ -137,61 +110,7 @@ namespace Dungeon
         }
     }
 
-    class Lightsaber : Weapon
-    {
-        public Lightsaber(IConsoleOutputService consoleOut, ISoundPlayerService soundPlayer,
-            string name = "Lightsaber", int maxDamage = 20) :
-            base(consoleOut, soundPlayer)
-        {
-            this.Name = name;
-            this.MaxDamage = maxDamage;
-        }
-
-        public override string Description
-        {
-            get
-            {
-                return string.Format("{0} - {1} hit points", this.Name, this.MaxDamage);
-            }
-        }
-
-        public override int WeightInLbs
-        {
-            get
-            {
-                return 1;
-            }
-        }
-    }
-
-    class Sting : Weapon
-    {
-        public Sting(IConsoleOutputService consoleOut, ISoundPlayerService soundPlayer,
-            string name = "Sting", int maxDamage = 30) :
-            base(consoleOut, soundPlayer)
-        {
-            this.Name = name;
-            this.MaxDamage = maxDamage;
-        }
-
-        public override string Description
-        {
-            get
-            {
-                return string.Format("{0} - {1} hit points", this.Name, this.MaxDamage);
-            }
-        }
-
-        public override int WeightInLbs
-        {
-            get
-            {
-                return 1;
-            }
-        }
-    }
-
-    class Bow : Weapon
+    public sealed class Bow : Weapon
     {
         public Bow(IConsoleOutputService consoleOut, ISoundPlayerService soundPlayer,
             string name = "Bow", int maxDamage = 12) :
@@ -218,7 +137,7 @@ namespace Dungeon
         }
     }
 
-    class Staff : Weapon
+    public sealed class Staff : Weapon
     {
         public Staff(IConsoleOutputService consoleOut, ISoundPlayerService soundPlayer,
             string name = "Staff", int maxDamage = 6) :

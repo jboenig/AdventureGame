@@ -3,9 +3,9 @@ using AdventureGameEngine;
 
 namespace Dungeon
 {
-    public class DeadPool : RoomFeature
+    public class PoisonPool : RoomFeature
     {
-        public DeadPool()
+        public PoisonPool()
         {
             this.Name = "Pool";
         }

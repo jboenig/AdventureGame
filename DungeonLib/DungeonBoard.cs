@@ -102,29 +102,11 @@ namespace Dungeon
 
         public void InitWeapons()
         {
-            // Add a Katana
-            var katana = new Katana(this.consoleOut, this.soundPlayer);
-            this.Weapons.Add(katana);
-            var curRoom = this.PickRandomRoom();
-            curRoom.Items.Add(katana);
-
-            // Add a Lightsaber
-            var lightsaber = new Lightsaber(this.consoleOut, this.soundPlayer);
-            this.Weapons.Add(lightsaber);
-            curRoom = this.PickRandomRoom();
-            curRoom.Items.Add(lightsaber);
-
             // Add a Broad Sword
             var broadSword = new BroadSword(this.consoleOut, this.soundPlayer);
             this.Weapons.Add(broadSword);
-            curRoom = this.PickRandomRoom();
+            var curRoom = this.PickRandomRoom();
             curRoom.Items.Add(broadSword);
-
-            // Add a sting
-            var sting = new Sting(this.consoleOut, this.soundPlayer);
-            this.Weapons.Add(sting);
-            curRoom = this.PickRandomRoom();
-            curRoom.Items.Add(sting);
 
             // Add a Battle Axe
             var battleAxe = new BattleAxe(this.consoleOut, this.soundPlayer);
@@ -246,10 +228,10 @@ namespace Dungeon
                 runeNum = runeNum + 1;
             }
 
-            var deadpool = new DeadPool();
-            this.RoomFeatures.Add(deadpool);
+            var poisonpool = new PoisonPool();
+            this.RoomFeatures.Add(poisonpool);
             var curRoom = this.PickRandomRoom();
-            curRoom.Features.Add(deadpool);
+            curRoom.Features.Add(poisonpool);
 
             var pool1 = new WaterPool(this.consoleOut, this.soundPlayer);
             this.RoomFeatures.Add(pool1);
@@ -265,6 +247,11 @@ namespace Dungeon
             this.RoomFeatures.Add(pool3);
             curRoom = this.PickRandomRoom();
             curRoom.Features.Add(pool3);
+
+            var pool4 = new WaterPool(this.consoleOut, this.soundPlayer);
+            this.RoomFeatures.Add(pool4);
+            curRoom = this.PickRandomRoom();
+            curRoom.Features.Add(pool4);
 
             var treasureChest1 = new TreasureChest(this.consoleOut, this.soundPlayer, 10);
             this.RoomFeatures.Add(treasureChest1);
