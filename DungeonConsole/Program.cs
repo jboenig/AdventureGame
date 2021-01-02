@@ -11,32 +11,22 @@ namespace DungeonConsole
     {
         class CommandLineOptions
         {
-            [Option('m', "map", Required = false,
-              HelpText = "Name of map to use.")]
+            [Option('m', "map", Required = false, HelpText = "Name of map to use.")]
             public string MapName { get; set; }
-
-            [ParserState]
-            public IParserState LastParserState { get; set; }
-
-            [HelpOption]
-            public string GetUsage()
-            {
-                return HelpText.AutoBuild(this,
-                  (HelpText current) => HelpText.DefaultParsingErrorsHandler(this, current));
-            }
         }
 
         static void Main(string[] args)
         {
-            var cmdLineOptions = new CommandLineOptions();
-            CommandLine.Parser.Default.ParseArguments(args, cmdLineOptions);
+            var parseRes = Parser.Default.ParseArguments<CommandLineOptions>(args);
+            parseRes.WithParsed((options) =>
+            {
+                NInjectHelper.Initialize();
 
-            NInjectHelper.Initialize();
-
-            var gameHost = NInjectHelper.Get<IGameHost>();
-            var game = NInjectHelper.Get<Game>();
-            game.MapName = cmdLineOptions.MapName;
-            gameHost.Run(game);
+                var gameHost = NInjectHelper.Get<IGameHost>();
+                var game = NInjectHelper.Get<Game>();
+                game.MapName = options.MapName;
+                gameHost.Run(game);
+            });
         }
     }
 }

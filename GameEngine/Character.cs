@@ -10,7 +10,7 @@ namespace AdventureGameEngine
     {
         private int health;
         private GameBoard.Position pos;
-        private ObservableCollection<InventoryItem> inventory;
+        private readonly ObservableCollection<InventoryItem> inventory;
         private InventoryItem itemInUse;
         protected IConsoleOutputService consoleOut;
         protected ISoundPlayerService soundPlayer;

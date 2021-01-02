@@ -176,12 +176,8 @@
       <Project>{7b014fbb-61ca-4cb6-86a4-9c23211ea303}</Project>
       <Name>Syncfusion.Diagram</Name>
     </ProjectReference>
-    <ProjectReference Include="..\DungeonLib\DungeonLib.csproj">
-      <Project>{663a4056-e9bf-480e-85d6-ff694e434269}</Project>
-      <Name>BadAssFootDungeonLib</Name>
-    </ProjectReference>
     <ProjectReference Include="..\GameEngine\AdventureGameEngine.csproj">
-      <Project>{edc842d2-cadd-420c-a44a-03a67381874b}</Project>
+      <Project>{552e290f-bafb-46a8-b48d-2f01d6deee1a}</Project>
       <Name>AdventureGameEngine</Name>
     </ProjectReference>
   </ItemGroup>

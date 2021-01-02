@@ -1,17 +1,17 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.27004.2006
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29806.167
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DungeonConsole", "DungeonConsole\DungeonConsole.csproj", "{F4626CF2-A3C2-4698-A0C0-9E6D6D12C9A9}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdventureGameEngine", "GameEngine\AdventureGameEngine.csproj", "{EDC842D2-CADD-420C-A44A-03A67381874B}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DungeonLib", "DungeonLib\DungeonLib.csproj", "{663A4056-E9BF-480E-85D6-FF694E434269}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DungeonGui", "DungeonGui\DungeonGui.csproj", "{3A58FE14-0802-418A-B9CE-01913C6341C8}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Syncfusion.Diagram", "..\Diagram\Src\Syncfusion.Diagram.csproj", "{7B014FBB-61CA-4CB6-86A4-9C23211EA303}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AdventureGameEngine", "GameEngine\AdventureGameEngine.csproj", "{552E290F-BAFB-46A8-B48D-2F01D6DEEE1A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DungeonLib", "DungeonLib\DungeonLib.csproj", "{5C46F4D3-EE72-48AA-A9E3-6F2849F4F03C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -26,18 +26,6 @@ Global
 		{F4626CF2-A3C2-4698-A0C0-9E6D6D12C9A9}.Documentation|Any CPU.Build.0 = Debug|Any CPU
 		{F4626CF2-A3C2-4698-A0C0-9E6D6D12C9A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F4626CF2-A3C2-4698-A0C0-9E6D6D12C9A9}.Release|Any CPU.Build.0 = Release|Any CPU
-		{EDC842D2-CADD-420C-A44A-03A67381874B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{EDC842D2-CADD-420C-A44A-03A67381874B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{EDC842D2-CADD-420C-A44A-03A67381874B}.Documentation|Any CPU.ActiveCfg = Debug|Any CPU
-		{EDC842D2-CADD-420C-A44A-03A67381874B}.Documentation|Any CPU.Build.0 = Debug|Any CPU
-		{EDC842D2-CADD-420C-A44A-03A67381874B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{EDC842D2-CADD-420C-A44A-03A67381874B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{663A4056-E9BF-480E-85D6-FF694E434269}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{663A4056-E9BF-480E-85D6-FF694E434269}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{663A4056-E9BF-480E-85D6-FF694E434269}.Documentation|Any CPU.ActiveCfg = Debug|Any CPU
-		{663A4056-E9BF-480E-85D6-FF694E434269}.Documentation|Any CPU.Build.0 = Debug|Any CPU
-		{663A4056-E9BF-480E-85D6-FF694E434269}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{663A4056-E9BF-480E-85D6-FF694E434269}.Release|Any CPU.Build.0 = Release|Any CPU
 		{3A58FE14-0802-418A-B9CE-01913C6341C8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{3A58FE14-0802-418A-B9CE-01913C6341C8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3A58FE14-0802-418A-B9CE-01913C6341C8}.Documentation|Any CPU.ActiveCfg = Debug|Any CPU
@@ -50,6 +38,18 @@ Global
 		{7B014FBB-61CA-4CB6-86A4-9C23211EA303}.Documentation|Any CPU.Build.0 = Documentation|Any CPU
 		{7B014FBB-61CA-4CB6-86A4-9C23211EA303}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7B014FBB-61CA-4CB6-86A4-9C23211EA303}.Release|Any CPU.Build.0 = Release|Any CPU
+		{552E290F-BAFB-46A8-B48D-2F01D6DEEE1A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{552E290F-BAFB-46A8-B48D-2F01D6DEEE1A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{552E290F-BAFB-46A8-B48D-2F01D6DEEE1A}.Documentation|Any CPU.ActiveCfg = Debug|Any CPU
+		{552E290F-BAFB-46A8-B48D-2F01D6DEEE1A}.Documentation|Any CPU.Build.0 = Debug|Any CPU
+		{552E290F-BAFB-46A8-B48D-2F01D6DEEE1A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{552E290F-BAFB-46A8-B48D-2F01D6DEEE1A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5C46F4D3-EE72-48AA-A9E3-6F2849F4F03C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5C46F4D3-EE72-48AA-A9E3-6F2849F4F03C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5C46F4D3-EE72-48AA-A9E3-6F2849F4F03C}.Documentation|Any CPU.ActiveCfg = Debug|Any CPU
+		{5C46F4D3-EE72-48AA-A9E3-6F2849F4F03C}.Documentation|Any CPU.Build.0 = Debug|Any CPU
+		{5C46F4D3-EE72-48AA-A9E3-6F2849F4F03C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5C46F4D3-EE72-48AA-A9E3-6F2849F4F03C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

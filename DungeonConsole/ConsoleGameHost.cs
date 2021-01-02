@@ -10,8 +10,8 @@ namespace DungeonConsole
     {
         private Game game;
         private bool isGameRunning = false;
-        private ConsoleAppIOImpl consoleIO;
-        private SoundPlayerService soundPlayer;
+        private readonly ConsoleAppIOImpl consoleIO;
+        private readonly SoundPlayerService soundPlayer;
 
         public ConsoleGameHost()
         {
