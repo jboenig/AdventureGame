@@ -146,6 +146,18 @@ namespace Dungeon
             this.Friends.Add(dwarf1);
             curRoom = this.PickRandomRoom();
             curRoom.Characters.Add(dwarf1);
+
+            // Add Gimli to the maze
+            var dwarf2 = new Dwarf(this.consoleOut, this.soundPlayer, "Gimli", "Gimli son of Gloin");
+            dwarf2.AddToInventory(new BattleAxe(this.consoleOut, this.soundPlayer));
+            dwarf2.UseItem<BattleAxe>();
+            if (runes.Count > 0)
+            {
+                dwarf2.AddToInventory(runes.UseNext());
+            }
+            this.Friends.Add(dwarf2);
+            curRoom = this.PickRandomRoom();
+            curRoom.Characters.Add(dwarf2);
         }
 
         public void InitEnemies(RuneCollection runes)
